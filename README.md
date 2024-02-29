@@ -11,24 +11,24 @@
 ```pawn
 cmd:createncp(playerid)
 {
-	new Float: x, Float: y, Float: z;
-	GetPlayerPos(playerid, x, y, z);
+    new Float: x, Float: y, Float: z;
+    GetPlayerPos(playerid, x, y, z);
 
-	ncp_PlayerCreate(playerid, x, y, z);
+    ncp_PlayerCreate(playerid, x, y, z);
 
 	return true;
 }
 
 cmd:destroyncp(playerid, params[])
 {
-	new id;
+    new id;
     if (sscanf(params, "d", id)) {
         return SendClientMessage(playerid, -1, "/destroyncp [ID]");
-	}
+    }
 
-	ncp_PlayerDestroy(playerid, id);
+    ncp_PlayerDestroy(playerid, id);
 
-	return true;
+    return true;
 }
 ```
 
