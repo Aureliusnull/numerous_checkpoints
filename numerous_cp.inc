@@ -12,7 +12,7 @@
 */
 
 #if !defined _streamer_included
-    #error "Please included <streamer> before include <numerous_cp>
+    #error "Please included <streamer> before include <numerous_cp>"
 #endif
 
 #if !defined _FOREACH_LOCAL_VERSION

@@ -1,5 +1,6 @@
 ## *Numerous checkpoints*
 Библиотека позволяет показать многочисленное количество чекпоинтов для игрока.
+<img src="https://imgur.com/ViATHuD.png">
 
 ## *Установка*
 - Переместите файл numerous_cp в папку с инклудами игрового мода.
@@ -16,7 +17,7 @@ cmd:createncp(playerid)
 
     ncp_PlayerCreate(playerid, x, y, z);
 
-	return true;
+    return true;
 }
 
 cmd:destroyncp(playerid, params[])
@@ -34,4 +35,35 @@ cmd:destroyncp(playerid, params[])
 
 ## *Функции*
 
+### ncp_PlayerCreate(playerid, Float: x, Float: y, Float: z)
+> Создаёт новый чекпоинт.
+> * `playerid` - ID игрока.
+> * `x` - координата X.
+> * `y` - координата Y.
+> * `z` - координата Z.
+
+### ncp_PlayerDestroy(playerid, ncp_id)
+> Уничтожает чекпоинт.
+> * `playerid` - ID игрока.
+> * `ncpid` - ID чекпоинта.
+
+### ncp_IsPlayerEntered(playerid, ncp_id)
+> Вошёл ли игрок в зону действия чекпоинта.
+> * `playerid` - ID игрока.
+> * `ncpid` - ID чекпоинта.
+
+### ncp_IsValid(ncp_id)
+> Валиден ли чекпоинт.
+> * `ncpid` - ID чекпоинта.
+
 ## *Коллбэки*
+
+### public OnPlayerEnterNCP(playerid, ncpid)
+> Вызывается когда игрок вошёл в зону действия чекпоинта.
+> * `playerid` - ID игрока.
+> * `ncpid` - ID чекпоинта.
+
+### public OnPlayerLeaveNCP(playerid, ncpid)
+> Вызывается когда игрок покинул зону действия чекпоинта.
+> * `playerid` - ID игрока.
+> * `ncpid` - ID чекпоинта.
