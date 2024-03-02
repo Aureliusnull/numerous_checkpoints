@@ -51,7 +51,8 @@ enum E_PLAYER_NCP_INFO
 	vars
 */
 
-static 
+static
+	g_ncp_object_id,
     g_player_ncp_info[MAX_PLAYERS][E_PLAYER_NCP_INFO],
     Iterator: g_ncp_iterator<MAX_NCP_COUNT>;
 
@@ -65,8 +66,8 @@ static const NULL_g_player_ncp_info[E_PLAYER_NCP_INFO] =
     forwards
 */
 
-forward OnPlayerEnterNCP(playerid, cpid);
-forward OnPlayerLeaveNCP(playerid, cpid);
+forward OnPlayerEnterNCP(playerid, ncpid);
+forward OnPlayerLeaveNCP(playerid, ncpid);
 
 /*  
     hook OnGameModeInit
@@ -277,7 +278,7 @@ static stock ncp_PlayerCreate(playerid, Float: x, Float: y, Float: z)
     }
 
     Iter_Add(g_ncp_iterator, free_idx);
-
+	
 	SetPlayerMapIcon(playerid, free_idx, x, y, z, 0, 0xAA00000FF, MAPICON_GLOBAL_CHECKPOINT);
 
 	g_player_ncp_info[playerid][E_PLAYER_NCP_AREA][free_idx] = CreateDynamicCylinder(
@@ -288,7 +289,18 @@ static stock ncp_PlayerCreate(playerid, Float: x, Float: y, Float: z)
 		1.3, 
 		.playerid = playerid
     );
-	
+
+	g_ncp_object_id = CreateDynamicObject(
+		1317, 
+		x, 
+		y, 
+		z - 1.0, 
+		0.0, 
+		0.0, 
+		0.0
+	);
+	SetDynamicObjectMaterial(g_ncp_object_id, 0, -1, "none", "none", 0xFFFF0000);
+
     return free_idx;
 }
 
@@ -302,6 +314,10 @@ static stock ncp_PlayerDestroy(playerid, ncp_id)
 		return false;
 	}
 
+	if (IsValidDynamicObject(g_ncp_object_id)) {
+		DestroyDynamicObject(g_ncp_object_id);
+	}
+	
     Iter_Remove(g_ncp_iterator, ncp_id);
 
 	DestroyDynamicArea(g_player_ncp_info[playerid][E_PLAYER_NCP_AREA][ncp_id]);
