@@ -1,6 +1,7 @@
 ## *Numerous checkpoints*
 Библиотека позволяет показать многочисленное количество чекпоинтов для игрока.
 <img src="https://imgur.com/ViATHuD.png">
+<img src="https://imgur.com/7XtOlSa.png">
 
 ## *Установка*
 - Переместите файл numerous_cp в папку с инклудами игрового мода.
